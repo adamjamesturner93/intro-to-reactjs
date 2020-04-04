@@ -1,0 +1,29 @@
+.keySkillsList__item {
+  display: flex;
+  justify-content: space-between;
+  /* box-shadow: 0 0 20px 0px #333; */
+  border-radius: 5px;
+  padding: 3%;
+  /* padding-right: 30%; */
+}
+
+.keySkillsList__item:nth-child(even) {
+  flex-direction: row-reverse;
+  padding: 3%;
+  text-align: right;
+  /* padding-left: 30%; */
+}
+
+.keySkillsList__item:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.keySkillsList__icon {
+  font-size: 250px;
+  width: 300px;
+  display: inline-block;
+}
+
+.keySkillsList__title {
+  padding-top: 10%;
+}

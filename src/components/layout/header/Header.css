@@ -1,0 +1,45 @@
+header {
+  background-color: #333;
+  color: #e6e6e6;
+  padding: 1% 2%;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+}
+
+nav ul li {
+  padding: 2% 5%;
+  width: 50px;
+}
+nav ul li {
+  width: 100px;
+  padding: 2% 5%;
+}
+
+.nav__link {
+  color: #e6e6e6;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.nav__link:hover {
+  border-bottom: 2px solid #e6e6e6;
+  font-weight: bold;
+}
+
+.nav__link--active {
+  font-weight: bold;
+  border-bottom: 2px solid #e6e6e6;
+}
+
+.nav__link--title {
+  font-weight: bold;
+  font-size: x-large;
+}
