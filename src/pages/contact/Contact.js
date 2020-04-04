@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
+const encode = (data) => {
+  return Object.keys(data)
+    .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .join("&");
+};
+
 const Form = styled.form`
   padding: 3% 10%;
   box-shadow: 0 0 20px 0 #333;
@@ -40,21 +46,54 @@ const SubmitButton = styled.button`
 `;
 
 export class Contact extends Component {
+  state = { name: "", email: "", message: "" };
+
+  handleFormSubmit = (event) => {
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({ "form-name": "contact", ...this.state }),
+    })
+      .then(() => alert("Success!"))
+      .catch((error) => alert(error));
+
+    event.preventDefault();
+  };
+
+  handleChange = (e) => this.setState({ [e.target.name]: e.target.value });
+
   render() {
+    const { name, email, message } = this.state;
+
     return (
-      <Form netlify>
+      <Form onSubmit={this.handleFormSubmit}>
         <h1>Get in Touch!</h1>
         <InputGroup>
           <InputLabel htmlFor="name">Name: </InputLabel>
-          <InputText name="name" type="text" />
+          <InputText
+            name="name"
+            type="text"
+            value={name}
+            onChange={this.handleChange}
+          />
         </InputGroup>
         <InputGroup>
           <InputLabel htmlFor="email">Email: </InputLabel>
-          <InputText name="email" type="email" />
+          <InputText
+            name="email"
+            type="email"
+            value={email}
+            onChange={this.handleChange}
+          />
         </InputGroup>
         <InputGroup>
           <InputLabel htmlFor="message">Message: </InputLabel>
-          <InputTextArea name="message" rows={10} />
+          <InputTextArea
+            name="message"
+            rows={10}
+            value={message}
+            onChange={this.handleChange}
+          />
         </InputGroup>
         <SubmitButton type="submit">Send Message!</SubmitButton>
       </Form>
