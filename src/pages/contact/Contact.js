@@ -40,13 +40,9 @@ const SubmitButton = styled.button`
 `;
 
 export class Contact extends Component {
-  handleFormSubmit = (event) => {
-    console.log(event);
-  };
-
   render() {
     return (
-      <Form onSubmit={this.handleFormSubmit}>
+      <Form netlify>
         <h1>Get in Touch!</h1>
         <InputGroup>
           <InputLabel htmlFor="name">Name: </InputLabel>
