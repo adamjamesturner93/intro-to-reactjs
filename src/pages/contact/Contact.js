@@ -1,64 +1,15 @@
 import React, { Component } from "react";
-import styled from "styled-components";
-
-const encode = (data) => {
-  return Object.keys(data)
-    .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
-    .join("&");
-};
-
-const Form = styled.form`
-  padding: 3% 10%;
-  box-shadow: 0 0 20px 0 #333;
-  background-color: white;
-  border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const InputGroup = styled.section`
-  display: flex;
-  margin: 20px 0;
-`;
-
-const InputLabel = styled.label`
-  width: 100px;
-`;
-
-const InputText = styled.input`
-  width: 200px;
-  border-color: lightgray;
-  border-style: solid;
-  border-width: 1px;
-`;
-
-const InputTextArea = styled.textarea`
-  width: 200px;
-  border-color: lightgray;
-`;
-
-const SubmitButton = styled.button`
-  background-color: blue;
-  color: white;
-  padding: 10px 30px;
-  border-radius: 3px;
-`;
+import {
+  InputGroup,
+  InputLabel,
+  InputTextArea,
+  Form,
+  InputText,
+  SubmitButton,
+} from "./Contact.styles";
 
 export class Contact extends Component {
   state = { name: "", email: "", message: "" };
-
-  handleFormSubmit = (event) => {
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({ "form-name": "contact", ...this.state }),
-    })
-      .then(() => alert("Success!"))
-      .catch((error) => alert(error));
-
-    event.preventDefault();
-  };
 
   handleChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
